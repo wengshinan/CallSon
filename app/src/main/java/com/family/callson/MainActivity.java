@@ -1,15 +1,16 @@
 package com.family.callson;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.app.ActionBar;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -34,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
         tabHost = (MaterialTabHost) this.findViewById(R.id.tabHost);
         pager = (ViewPager) this.findViewById(R.id.pager );
         // init view pager
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), this);
         pager.setAdapter(adapter);
         pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -71,7 +72,10 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, 1);
+            //startActivity(intent);
             return true;
         }
 
@@ -80,13 +84,18 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        public ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
+        Activity context;
 
+        public ViewPagerAdapter(FragmentManager fm, Activity context) {
+            super(fm);
+            this.context = context;
         }
 
         public Fragment getItem(int num) {
-            return new MainFragment();
+
+            Fragment fragment = new MainFragment(context, num);
+            return fragment;
+
         }
 
         @Override

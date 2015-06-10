@@ -11,4 +11,5 @@
     <!--<style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
     　　<item name="android:background">@color/background_floating_material_light</item>
     </style>-->
+
 </resources>
