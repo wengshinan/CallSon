@@ -11,6 +11,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -19,9 +23,12 @@ import it.neokree.materialtabs.MaterialTabListener;
 
 public class MainActivity extends ActionBarActivity implements MaterialTabListener {
 
+
     MaterialTabHost tabHost;
     ViewPager pager;
     ViewPagerAdapter adapter;
+    String myCity;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +62,14 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
             );
 
         }
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -73,13 +82,19 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivityForResult(intent, 1);
             //startActivity(intent);
             return true;
+        } else if (id == R.id.location_setting) {
+            Intent intent = new Intent(MainActivity.this, CityChoose.class);
+            intent.putExtra("myCity", myCity);
+
+            startActivityForResult(intent, 2);
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
+        //return super.onOptionsItemSelected(item);
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -132,5 +147,17 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
     @Override
     public void onTabReselected(MaterialTab tab) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+
+        } else if (requestCode == 2){
+            myCity = data.getExtras().getString("myCity");
+            MenuItem item = menu.findItem(R.id.location_setting);
+            item.setTitle(myCity);
+        }
     }
 }
