@@ -20,6 +20,14 @@
     <string name="password">密码</string>
     <string name="visable">显示密码</string>
     <string name="login_register">注册或登录</string>
+    <string name="register">注册</string>
+    <string name="validate">验证码</string>
+    <string name="cn_name">中文姓名</string>
+    <string name="age">年龄</string>
+    <string name="choose_age">请选择您的年龄</string>
+    <string name="validate_hint">输入短信接收到的验证码</string>
+    <string name="description">个人情况</string>
+    <string name="description_hint">请简单介绍身体状况，如生理疾病等</string>
 
     <string name="search_hint">搜索历史订单</string>
 

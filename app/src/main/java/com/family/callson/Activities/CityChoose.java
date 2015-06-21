@@ -1,4 +1,4 @@
-package com.family.callson;
+package com.family.callson.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.family.callson.R;
+import com.family.callson.constant.IntentParam;
+
 
 public class CityChoose extends ActionBarActivity {
 
-    private final String[] cityList = {"福州","厦门","北京","上海","广州","深圳"};
+    //private final String[] cityList = {"福州","厦门","北京","上海","广州","深圳"};
 
     private String myCity;
 
@@ -24,14 +27,14 @@ public class CityChoose extends ActionBarActivity {
         setContentView(R.layout.city_choose);
 
         final Intent intent = getIntent();
-        myCity = intent.getExtras().getString("myCity");
+        myCity = intent.getExtras().getString(IntentParam.PARAM_NAME_CITY);
 
         final Spinner citySpinner = (Spinner) this.findViewById(R.id.city_spinner);
-
+        String[] cityList = getResources().getStringArray(R.array.cities);
         final ArrayAdapter cityAdapter = new ArrayAdapter(
                 this, R.layout.spinner, cityList);
-        citySpinner.setAdapter(cityAdapter);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(cityAdapter);
         citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -55,11 +58,12 @@ public class CityChoose extends ActionBarActivity {
     @Override
     public void finish() {
         Intent intent = new Intent();
-        intent.putExtra("myCity", myCity);
-        CityChoose.this.setResult(RESULT_OK, intent);
+        intent.putExtra(IntentParam.PARAM_NAME_CITY, myCity);
+        setResult(RESULT_OK, intent);
         super.finish();
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,4 +80,5 @@ public class CityChoose extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

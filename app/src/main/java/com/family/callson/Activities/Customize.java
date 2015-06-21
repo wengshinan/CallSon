@@ -1,9 +1,11 @@
-package com.family.callson;
+package com.family.callson.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.family.callson.R;
 
 
 public class Customize extends ActionBarActivity {
