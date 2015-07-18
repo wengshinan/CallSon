@@ -3,15 +3,18 @@ package com.family.callson.Activities;
 import java.util.List;
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.content.Intent;
 
@@ -32,6 +35,9 @@ public class MainFragment extends Fragment {
 
     private final String[] serviceArray = {"护工","家政","家教","医生","维修","其他"};
 
+    public MainFragment() {}
+
+    @SuppressLint("ValidFragment")
     public MainFragment(Activity mainActivity, int num){
         this.mainActivity = mainActivity;
         this.position = num;
@@ -45,17 +51,11 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         if (position == 0) {
-            /*
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                    this.mainActivity, R.layout.context_row, R.id.header_text, array);
 
-            final ExpandableLayoutListView expandableLayoutListView =
-                    (ExpandableListView) contextLayout.findViewById(R.id.listview);
-*/
             View contextLayout = inflater.inflate(R.layout.context_layout, null);
 
-            ArrayAdapter<String>  adpter =
-                    new ArrayAdapter<String>(mainActivity, R.layout.list_item, R.id.service_name, serviceArray);
+            ArrayAdapter<String>  adapter =
+                    new ArrayAdapter<>(mainActivity, R.layout.list_item, R.id.service_name, serviceArray);
 
 
             ListView listView = (ListView)contextLayout.findViewById(R.id.listView);
@@ -68,24 +68,33 @@ public class MainFragment extends Fragment {
                 }
             });
 
-            listView.setAdapter(adpter);
-            //expandableLayoutListView.setAdapter(arrayAdapter);
+            listView.setAdapter(adapter);
+
             return contextLayout;
         } else if (position == 1) {
             View contextLayout = inflater.inflate(R.layout.history, null);
 
             getHistory();
 
-            ArrayAdapter<String>  adpter =
-                    new ArrayAdapter<String>(mainActivity, R.layout.list_item,
+            ArrayAdapter<String>  adapter =
+                    new ArrayAdapter<>(mainActivity, R.layout.list_item,
                             R.id.service_name, history);
             ListView listView = (ListView) contextLayout.findViewById(R.id.historyList);
 
-            listView.setAdapter(adpter);
+            listView.setAdapter(adapter);
 
             return contextLayout;
         } else if (position == 2) {
             View contextLayout = inflater.inflate(R.layout.feedback, null);
+
+            Button sendFeedBackButton = (Button) contextLayout.findViewById(R.id.sendFeedbackButton);
+            sendFeedBackButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO 发送反馈
+                }
+            });
+
             return contextLayout;
         }
         return null;

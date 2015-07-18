@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">云儿子</string>
+    <string name="app_name">召之</string>
 
-    <string name="title_activity_main">云儿子</string>
+    <string name="title_activity_main">召之</string>
     <string name="title_activity_customize">定制服务</string>
     <string name="title_activity_login">登录/注册</string>
     <string name="title_activity_city_choose">选择所在城市、社区</string>

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by wengshinan on 2015/6/20.
  */
-public class DBHelper extends SQLiteOpenHelper{
+public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DB_NAME = "callson.db";
     private static final int DB_VERSION = 1;
@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper{
     private static final String SQL_CREATE_TABLE_USER = "";
     private static final String SQL_UPDATE_TABLE_USER = "";
 
-    public DBHelper(Context context) {
+    public DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

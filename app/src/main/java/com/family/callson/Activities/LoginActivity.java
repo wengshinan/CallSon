@@ -59,8 +59,8 @@ public class LoginActivity extends ActionBarActivity {
 
         final Spinner ageSpinner = (Spinner) LoginActivity.this.findViewById(R.id.age_spinner);
         String[] ageList = new String[80];
-        for (int i = 20; i < 100; i++)
-            ageList[i] = i + "岁";
+        for (int i = 0; i < 80; i++)
+            ageList[i] = (i+20) + "岁";
         final ArrayAdapter ageAdapter = new ArrayAdapter(
                 LoginActivity.this, R.layout.spinner, ageList);
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

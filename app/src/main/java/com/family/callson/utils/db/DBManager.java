@@ -15,14 +15,14 @@ public class DBManager {
 
     private String phone;
     private SQLiteDatabase db;
-    private DBHelper helper;
+    private DbHelper helper;
 
     private static final String TABLE_NAME_USER = "users";
     private static final String TABLE_NAME_ORDER = "orders";
 
     public DBManager(String phone, Context context){
         this.phone = phone;
-        this.helper = new DBHelper(context);
+        this.helper = new DbHelper(context);
         this.db = helper.getWritableDatabase();
     }
 
